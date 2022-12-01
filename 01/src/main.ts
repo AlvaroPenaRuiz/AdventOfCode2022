@@ -40,6 +40,7 @@ const Sum = (numbers: number[]) => {
   return numbers.reduce((prev, curr) => prev + curr)
 }
 
+// Some console checks
 console.log("Elves", Elves);
 console.log("Higest", getFattest());
 console.log("Top3", getTop3Fattest());
@@ -50,6 +51,5 @@ solution1.innerHTML = `The fattest elf has ${getFattest()} calories. Such a fata
 document.querySelector('#app')?.appendChild(solution1)
 
 //Puzzle 2
-
 solution2.innerHTML = `The total calories of the top 3 elves are ${Sum(getTop3Fattest().map((elf: Elf) => elf.total))}.`
 document.querySelector('#app')?.appendChild(solution2)
