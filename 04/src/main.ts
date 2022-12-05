@@ -31,8 +31,22 @@ const checkIsFullyContained = (pair: number[][]) => {
 	return firstContained || secondContained
 }
 
+const checkAnyOverlap = (pair: number[][]) => {
+	let check = false
+	pair[0].forEach((areaE1)=> {
+		pair[1].forEach((areaE2)=>{
+			if (areaE1 === areaE2) check = true
+		})
+	})
+	return check
+}
+
 // Puzzle 1
 const countPartnersContaineds = elvesPairsZones.map((elvesPairs) => checkIsFullyContained(elvesPairs)).filter(pair => pair === true).length
 
 console.log("Input", elvesPairsZones)
-console.log("Count", countPartnersContaineds)
+console.log("Count Containeds", countPartnersContaineds)
+
+//Puzzle 2
+const countPartnersOverlaps = elvesPairsZones.map((elvesPairs) => checkAnyOverlap(elvesPairs)).filter(pair => pair === true).length
+console.log("Count Overlaps", countPartnersOverlaps)
