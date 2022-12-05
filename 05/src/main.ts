@@ -28,21 +28,38 @@ const serializeInstructions = (unserializedInstructions: string) => {
     return operationValues.map((operation) => {return {quantity: operation[0], from: operation[1], to: operation[2]}}) 
 }
 
-const moveOperation = (instruction: Instruction) => {
+const moveOperationCrateMover9000 = (instruction: Instruction, cargo: string[][]) => {
     const {quantity} = instruction
-    const from = cargos[instruction.from - 1]
-    const to = cargos[instruction.to - 1]
+    const from = cargo[instruction.from - 1]
+    const to = cargo[instruction.to - 1]
 
     for (let i = quantity; i > 0; i--) to.push(from.pop()!)
 }
 
-const cargos = dimensionateCargos(cargoString)
+const moveOperationCrateMover9001 = (instruction: Instruction, cargo: string[][]) => {
+    const {quantity} = instruction
+    const from = cargo[instruction.from - 1]
+    const to = cargo[instruction.to - 1]
+
+    const crateGroup = []
+
+    for (let i = quantity; i > 0; i--) crateGroup.push(from.pop()!)
+    for (let i = quantity; i > 0; i--) to.push(crateGroup.pop()!)
+}
+
+const cargos1 = dimensionateCargos(cargoString)
+const cargos2 = dimensionateCargos(cargoString)
 const instructions: Instruction[]= serializeInstructions(instructionString)
 
 console.log("Instructions", instructions)
 
-instructions.forEach((instruction) => moveOperation(instruction))
-console.log("Cargos", cargos)
-console.log("Puzzle 1 Solution", cargos.map((column) => column[column.length - 1]).join(""))
+// Puzzle 1
+instructions.forEach((instruction) => moveOperationCrateMover9000(instruction, cargos1))
+console.log("Cargos 1", cargos1)
+console.log("Puzzle 1 Solution", cargos1.map((column) => column[column.length - 1]).join(""))
 
+//Puzzle 2
+instructions.forEach((instruction) => moveOperationCrateMover9001(instruction, cargos2))
+console.log("Cargos 2", cargos2)
+console.log("Puzzle 2 Solution", cargos2.map((column) => column[column.length - 1]).join(""))
 
