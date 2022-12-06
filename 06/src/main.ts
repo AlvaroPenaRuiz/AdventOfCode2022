@@ -1,0 +1,1 @@
+import getInput from "./input";
