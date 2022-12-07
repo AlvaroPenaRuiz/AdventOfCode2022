@@ -1,9 +1,12 @@
+import Directory from "./Directory"
+
 export default class File{
 
     name: string
+    parent: Directory | null = null
     size: number
 
-    constructor (name:string, size: number ){
+    constructor (name: string, size: number ){
         this.name = name
         this.size = size
     }

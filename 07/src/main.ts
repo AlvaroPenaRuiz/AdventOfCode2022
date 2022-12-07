@@ -1,8 +1,7 @@
 import getInput from "./input"
 import File from "./classes/File"
 import Directory from "./classes/Directory"
-
-console.log("Input", getInput())
+import Filesystem from "./classes/Filsesystem"
 
 /***** Extra: Test Classes **********************************************************/
 /**/ const root = new Directory("/")
@@ -18,4 +17,11 @@ console.log("Input", getInput())
 /**/
 /**/ console.log("Test Directories Print:\n", root.str())
 /***********************************************************************************/
+
+//Puzzle 1
+const fs = new Filesystem()
+fs.resctructure(getInput())
+
+console.log(fs.base.str())
+
 
