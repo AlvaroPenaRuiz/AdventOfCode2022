@@ -86,17 +86,25 @@ export default class Directory{
         
 
             
-            subSubdirectories = subSubdirectories.length > 0 ? subSubdirectories
-            .map((subdirectory)=> subdirectory.getSubdirectoriesUntilMaxSize(maxSize))
-            .reduce((prev, curr)=> [...prev, ...curr])
-            : []
+            // subSubdirectories = subSubdirectories.length > 0 ? subSubdirectories
+            // .map((subdirectory)=> subdirectory.getSubdirectoriesUntilMaxSize(maxSize))
+            // .reduce((prev, curr)=> [...prev, ...curr])
+            // : []
+
+            let aux = []
+            subSubdirectories.forEach((subdirectory) => {
+                aux.push(...subdirectory.getSubdirectoriesUntilMaxSize(maxSize))
+            })
+            //debugger
+
+
 
            // REHACERLO PERO MAS ESCALONADO PARA VER POR QUE NO SE ALMACENA BIEN EL VALOR EN SUBDIRECTORIES, SE PIERDE EL RETURN
             
 
         
-        debugger
-        return [...subdirectories, ...subSubdirectories ]
+        //debugger
+        return [...subdirectories, ...aux/*, ...subSubdirectories*/ ]
     }
 
 }
