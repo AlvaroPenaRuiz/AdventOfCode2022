@@ -77,4 +77,26 @@ export default class Directory{
         return total
 
     }
+
+    getSubdirectoriesUntilMaxSize = (maxSize = this.size) => {
+        
+        let subdirectories: Directory[] = this.subdirectories.filter((subdirectory)=> subdirectory.size < maxSize)
+        let subSubdirectories: Directory[] = this.subdirectories.filter((subdirectory)=> subdirectory.size > maxSize)
+
+        
+
+            
+            subSubdirectories = subSubdirectories.length > 0 ? subSubdirectories
+            .map((subdirectory)=> subdirectory.getSubdirectoriesUntilMaxSize(maxSize))
+            .reduce((prev, curr)=> [...prev, ...curr])
+            : []
+
+           // REHACERLO PERO MAS ESCALONADO PARA VER POR QUE NO SE ALMACENA BIEN EL VALOR EN SUBDIRECTORIES, SE PIERDE EL RETURN
+            
+
+        
+        debugger
+        return [...subdirectories, ...subSubdirectories ]
+    }
+
 }

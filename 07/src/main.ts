@@ -22,6 +22,15 @@ import Filesystem from "./classes/Filsesystem"
 const fs = new Filesystem()
 fs.resctructure(getInput())
 
-console.log(fs.base.str())
+console.log("Structured FS", fs.base.str())
+console.log("Sizes Max 100000", fs.base.getSubdirectoriesUntilMaxSize(100000))
+fs.base.getSubdirectoriesUntilMaxSize(100000).forEach(e => console.log(e.str()))
+
+console.log("Total", fs.base
+  .getSubdirectoriesUntilMaxSize(100000).
+  map((directory) => directory.size)
+  .reduce((prev, curr)=> prev + curr)
+)
+
 
 
