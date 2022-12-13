@@ -72,7 +72,7 @@ export default class Directory{
                 : 0
 
         const total: number = currentLocation + recursiveSize
-
+        
         this.size = total
         return total
 
@@ -90,20 +90,17 @@ export default class Directory{
             // .map((subdirectory)=> subdirectory.getSubdirectoriesUntilMaxSize(maxSize))
             // .reduce((prev, curr)=> [...prev, ...curr])
             // : []
-
-            let aux = []
+        //debugger
+            let aux: Directory[] = []
             subSubdirectories.forEach((subdirectory) => {
-                aux.push(...subdirectory.getSubdirectoriesUntilMaxSize(maxSize))
+                
+                let recursiveReturn = subdirectory.getSubdirectoriesUntilMaxSize(maxSize)
+                
+                aux.push(...recursiveReturn)
             })
-            //debugger
-
-
 
            // REHACERLO PERO MAS ESCALONADO PARA VER POR QUE NO SE ALMACENA BIEN EL VALOR EN SUBDIRECTORIES, SE PIERDE EL RETURN
-            
 
-        
-        //debugger
         return [...subdirectories, ...aux/*, ...subSubdirectories*/ ]
     }
 

@@ -24,13 +24,13 @@ export default class Filesystem{
         operationGroups.shift()
 
         operationGroups.forEach((operationGroup: string) => {
-
-            if (operationGroup.includes("cd")){
+            
+            if (operationGroup.includes("cd ")){
                 
                 const nextDirectoryName = operationGroup.split(" ")[1].split("\n")[0]
 
                 if (nextDirectoryName === "..") {
-
+                    
                     this.current = this.current.parent ? this.current.parent : this.base
 
                 } else {
@@ -46,7 +46,7 @@ export default class Filesystem{
             } else if (operationGroup.includes("ls")) {
                 
                 const operations = operationGroup.split("\n")
-                operations.pop()
+                if (operations[operations.length - 1] === "") operations.pop()
 
                 const files = operations
                     .filter((line: string) => !line.includes("ls") && !line.includes("dir "))
